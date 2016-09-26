@@ -47,11 +47,11 @@ if (($load_font_awesome == '1') and ($params->get('turn_on_font_awesome') == '1'
 defined("_JEXEC") or die("Restricted access");
 $config = JFactory::getConfig();
 $offset = $config->get('offset');
-$h = $offset;// Hour for time zone goes here e.g. +7 or -4, just remove the + or -
-$hm = $h * (-60);
-$ms = $hm * 60;
-$gmdate = gmdate("H:i", time()+($ms)); // the "-" can be switched to a plus if that's what your time zone is.
-$gmday = gmdate("l", time()+($ms));
+//$h = $offset;// Hour for time zone goes here e.g. +7 or -4, just remove the + or -
+//$hm = $h * (60);
+//$ms = $hm * 60;
+$gmdate = gmdate("H:i", time()); // the "-" can be switched to a plus if that's what your time zone is.
+$gmday = gmdate("l", time());
 $module_category = $params->get('mycategory');
 foreach($results as $result){
 
@@ -68,7 +68,7 @@ foreach($results as $result){
     <?php $haveprogram = '0';?>
 
 <?php
-
+echo $offset;
 foreach ($items as $i => $item) : ?>
     <?php
     $theinitialtime = JHtml::date($item->start_time, 'H:i');
