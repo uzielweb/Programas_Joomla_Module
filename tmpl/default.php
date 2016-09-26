@@ -76,9 +76,9 @@ $haveprogram = '0'; ?>
 foreach($items as $i => $item): ?>
     <?php
     $thefinaltime = date_format(date_create($item->end_time) , 'H:i');
-    $thedays = json_decode($item->days_of_the_week);
     $theinitialtime = date_format(date_create($item->start_time) , 'H:i');
- ?>
+    $thedays = json_decode($item->days_of_the_week); 
+?>
 <?php
     foreach($thedays as $theday): ?>
 
@@ -107,8 +107,8 @@ foreach($items as $i => $item): ?>
         <?php
                 if ((in_array('start_time', $enabled) and in_array('end_time', $enabled)) or $params->get('enable_defaults')): ?>
         <p class="program_time"><?php
-                    echo JHtml::date($item->start_time, 'H:i') . ' h'; ?> - <?php
-                    echo JHtml::date($item->end_time, 'H:i') . ' h'; ?></p>
+                    echo $theinitialtime . ' h'; ?> - <?php
+                    echo $thefinaltime . ' h'; ?></p>
         <?php
                 endif; ?>
         <?php
@@ -205,7 +205,7 @@ foreach($items as $i => $item): ?>
                 if (($params->get('button_code')) and ($params->get('module_or_custom_script') == '0')): ?>
         <div class="span12 col-md-12">
             <?php
-                    echo "<a onclick=\"printDiv('SimuladorFormulario');\" id=\"btnPrint\" href=\"javascript:void(0);\" class=\"buttoncode\">" . $params->get('button_code') . "</a>"; ?>
+                    echo "<a onclick=\"printDiv();\" id=\"btnPrint".$module->id."\" href=\"javascript:void(0);\" class=\"buttoncode\">" . $params->get('button_code') . "</a>"; ?>
         </div>
         <?php
                 endif; ?>
@@ -245,7 +245,8 @@ if (($params->get('button_code')) and ($params->get('module_or_custom_script') =
 <script type="text/javascript">
  jQuery(document).ready(function () {
   // Print div
-jQuery("#btnPrint").live("click", function () {
+jQuery("#btnPrint<?php
+    echo $module->id; ?>").live("click", function () {
             var printWindow = window.open('', "printWindow", "width=<?php
     echo $params->get('popup_width'); ?>,height=<?php
     echo $params->get('popup_height'); ?>,50%,50%,directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=no");
