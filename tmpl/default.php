@@ -78,9 +78,7 @@ foreach($items as $i => $item): ?>
     $thefinaltime = date_format(date_create($item->end_time) , 'H:i');
     $thedays = json_decode($item->days_of_the_week);
     $theinitialtime = date_format(date_create($item->start_time) , 'H:i');
-    echo 'Dia e data atual:<br />' . $gmdate . ' - ' . $gmday . '<br />';
-    echo 'Horário da transmissão:<br />' . $theinitialtime . ' - ' . $thefinaltime . '<br />';
-?>
+ ?>
 <?php
     foreach($thedays as $theday): ?>
 
