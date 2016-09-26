@@ -68,7 +68,7 @@ foreach($results as $result){
     <?php $haveprogram = '0';?>
 
 <?php
-echo $offset;
+
 foreach ($items as $i => $item) : ?>
     <?php
     $theinitialtime = JHtml::date($item->start_time, 'H:i');
