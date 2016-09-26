@@ -45,8 +45,10 @@ if (($load_font_awesome == '1') and ($params->get('turn_on_font_awesome') == '1'
    $document->addStyleSheet(JURI::base().'components/com_programas/assets/css/font-awesome.min.css');
 }
 defined("_JEXEC") or die("Restricted access");
-$h = "-3";// Hour for time zone goes here e.g. +7 or -4, just remove the + or -
-$hm = $h * 60;
+$config = JFactory::getConfig();
+$offset = $config->get('offset');
+$h = $offset;// Hour for time zone goes here e.g. +7 or -4, just remove the + or -
+$hm = $h * (-60);
 $ms = $hm * 60;
 $gmdate = gmdate("H:i", time()+($ms)); // the "-" can be switched to a plus if that's what your time zone is.
 $gmday = gmdate("l", time()+($ms));
